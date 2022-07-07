@@ -1,0 +1,97 @@
+#install modules
+!mamba install bs4==4.10.0 -y
+!pip install lxml==4.6.4
+!mamba install html5lib==1.1 -y
+# !pip install requests==2.26.0
+
+#load modules
+from bs4 import BeautifulSoup # this module helps in web scrapping.
+import requests  # this module helps us to download a web page
+import pandas as pd
+
+#The below url contains html tables with data about world population.
+url = "https://en.wikipedia.org/wiki/World_population"
+
+# get the contents of the webpage in text format and store in a variable called data
+data  = requests.get(url).text
+
+
+soup = BeautifulSoup(data,"html.parser")
+
+#find all html tables in the web page
+tables = soup.find_all('table') # in html table is represented by the tag <table>
+
+# we can see how many tables were found by checking the length of the tables list
+len(tables)
+
+for index,table in enumerate(tables):
+    if ("10 most densely populated countries" in str(table)):
+        table_index = index
+print(table_index)
+
+#prettify shows table in an easy to read format
+print(tables[table_index].prettify())
+
+#function for population data in tables
+population_data = pd.DataFrame(columns=["Rank", "Country", "Population", "Area", "Density"])
+
+for row in tables[table_index].tbody.find_all("tr"):
+    col = row.find_all("td")
+    if (col != []):
+        rank = col[0].text
+        country = col[1].text
+        population = col[2].text.strip()
+        area = col[3].text.strip()
+        density = col[4].text.strip()
+        population_data = population_data.append({"Rank":rank, "Country":country, "Population":population, "Area":area, "Density":density}, ignore_index=True)
+
+population_data
+
+"""output
+  Rank           Country   Population     Area Density
+0    1         Singapore    5,704,000      710   8,033
+1    2        Bangladesh  173,010,000  143,998   1,201
+2    3  \n Palestine\n\n    5,266,785    6,020     847
+3    4           Lebanon    6,856,000   10,452     656
+4    5            Taiwan   23,604,000   36,193     652
+5    6       South Korea   51,781,000   99,538     520
+6    7            Rwanda   12,374,000   26,338     470
+7    8             Haiti   11,578,000   27,065     428
+8    9       Netherlands   17,710,000   41,526     427
+9   10            Israel    9,540,000   22,072     432
+"""
+
+#use the read_html function to create a DataFrame.
+#We can now use the pandas function read_html and give it the string version of the table as well as the flavor which is the parsing engine bs4.
+pd.read_html(str(tables[5]), flavor='bs4')
+
+#The function read_html always returns a list of DataFrames so we must pick the one we want out of the list
+population_data_read_html = pd.read_html(str(tables[5]), flavor='bs4')[0]
+
+population_data_read_html
+
+#We can also use the read_html function to directly get DataFrames from a url.
+dataframe_list = pd.read_html(url, flavor='bs4')
+
+#checks length of dataframe
+len(dataframe_list)
+
+#we can pick the DataFrame we need out of the list.
+dataframe_list[5]
+
+#We can also use the match parameter to select the specific table we want. If the table contains a string matching the text it will be read.
+pd.read_html(url, match="10 most densely populated countries", flavor='bs4')[0]
+
+"""output:most densely populated
+   Rank      Country  Population  Area(km2)  Density(pop/km2)
+0     1    Singapore     5704000        710              8033
+1     2   Bangladesh   173010000     143998              1201
+2     3    Palestine     5266785       6020               847
+3     4      Lebanon     6856000      10452               656
+4     5       Taiwan    23604000      36193               652
+5     6  South Korea    51781000      99538               520
+6     7       Rwanda    12374000      26338               470
+7     8        Haiti    11578000      27065               428
+8     9  Netherlands    17710000      41526               427
+9    10       Israel     9540000      22072               432
+"""
