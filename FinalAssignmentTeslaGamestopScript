@@ -62,7 +62,7 @@ If you want to use the read_html function the table is located at index 1
 #use the pandas read_html function using the url
 read_html_pandas_data = pd.read_html(url)
 #use the read_html function the table is located at index 1
-Tesla_dataframe = read_html_pandas_data[1]
+Tesla_revenue = read_html_pandas_data[1]
 
 #Execute the following line to remove the comma and dollar sign from the Revenue column.
 Tesla_revenue["Revenue"] = Tesla_revenue['Revenue'].str.replace(',|\$',"")
@@ -73,7 +73,7 @@ Tesla_revenue.dropna(inplace=True)
 Tesla_revenue = Tesla_revenue[Tesla_revenue['Revenue'] != ""]
 
 #Display the last 5 row of the tesla_revenue dataframe using the tail function. Take a screenshot of the results.
-Tesla_dataframe.tail()
+Tesla_revenue.tail()
 
 #GME ticker= Gamestop vs Melvin Capital vs Robinhood vs WallstreetBets 
 GME = yf.Ticker("GME")
@@ -98,10 +98,10 @@ soup = BeautifulSoup(html_data, 'html5lib')
 #
 read_html_pandas_data = pd.read_html(url)
 #use the read_html function the table is located at index 1
-GME_dataframe = read_html_pandas_data[1]
+GME_revenue = read_html_pandas_data[1]
 
 #Display the last five rows of the gme_revenue dataframe using the tail function. Take a screenshot of the results.
-GME_dataframe.tail()
+GME_revenue.tail()
 
 #Use the make_graph function to graph the Tesla Stock Data, also provide a title for the graph. The structure to call the make_graph function is make_graph(tesla_data, tesla_revenue, 'Tesla'). Note the graph will only show data upto June 2021.
 make_graph(Tesla_data, Tesla_revenue, 'Tesla')
