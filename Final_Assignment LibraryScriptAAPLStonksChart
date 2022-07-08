@@ -1,0 +1,47 @@
+#install modules
+!pip install yfinance==0.1.67
+#!pip install pandas==1.3.3
+
+#load modules
+import yfinance as yf
+import pandas as pd
+
+#Using the Ticker module we can create an object that will allow us to access functions to extract data. To do this we need to provide the ticker symbol for the stock, here the company is Apple and the ticker symbol is AAPL.
+apple = yf.Ticker("AAPL")
+
+#Using the attribute info we can extract information about the stock as a Python dictionary.
+apple_info=apple.info#assigns info to variable
+apple_info#returns key value pairs of information about the stock and company
+
+#We can get the 'country' using the key country
+apple_info['country']
+
+#Using the history() method we can get the share price of the stock over a certain period of time. Using the period parameter we can set how far back from the present to get data. The options for period are 1 day (1d), 5d, 1 month (1mo) , 3mo, 6mo, 1 year (1y), 2y, 5y, 10y, ytd, and max.
+apple_share_price_data = apple.history(period="max")
+
+#With the Date as the index the share Open, High, Low, Close, Volume, and Stock Splits are given for each day.
+#returns header of share price header(top 5, from 1980)
+apple_share_price_data.head()
+
+#We can reset the index of the DataFrame with the reset_index function. We also set the inplace paramter to True so the change takes place to the DataFrame itself.
+apple_share_price_data.reset_index(inplace=True)
+
+#We can plot the Open price against the Date:
+#plots a chart of historical daily opening share price of apple
+apple_share_price_data.plot(x="Date", y="Open")
+
+#sing the variable dividends we can get a dataframe of the data. The period of the data is given by the period defined in the 'history` function.
+apple.dividends
+
+#plots dividends returns over time
+apple.dividends.plot()
+
+#AMD ticker
+AMD = yf.Ticker("AMD")
+
+AMD_info=AMD.info#assigns info to variable
+AMD_info#returns key value pairs of information about the stock and company
+
+#We can get the 'country' using the key country
+AMD_info['country']
+
