@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jul  8 03:06:08 2022
 
-@author: Shawn Temes
-"""
 #Install modules
 #!pip install pandas==1.3.3
 #!pip install requests==2.26.0
