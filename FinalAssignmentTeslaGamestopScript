@@ -1,4 +1,5 @@
-#Old Script, now using 'FinalAssignmentNoteBookScript2' for assignment
+#error with pandas parsing, switched to BeautifulSoup
+#This is an old Script, now using 'FinalAssignmentNoteBookScript2' for assignment
 #install modules
 !pip install yfinance==0.1.67
 #!pip install pandas==1.3.3
