@@ -3,7 +3,6 @@
 Start:27June2022
 
 End:11-July2022
-#07/11 was a part time job
 
 https://www.coursera.org/learn/python-project-for-data-science?specialization=data-science-fundamentals-python-sql
 
