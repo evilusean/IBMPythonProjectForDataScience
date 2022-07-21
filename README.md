@@ -16,4 +16,20 @@ For this project, you will assume the role of a Data Scientist / Data Analyst wo
 
 <p align="center">  
 <img src="https://raw.githubusercontent.com/evilusean/IBMPythonWebscrapingStocksProjectForDataScience/921a9e20ee2fd71012f0b76de49ab60873f88ea3/MakeGraphFunction.jpg"</center>  
+</p>
+
+<p align="center">  
+<img src="https://raw.githubusercontent.com/evilusean/IBMPythonWebscrapingStocksProjectForDataScience/921a9e20ee2fd71012f0b76de49ab60873f88ea3/TeslaPriceChart.jpg"</center>  
+</p>  
+
+<p align="center">  
+<img src="https://raw.githubusercontent.com/evilusean/IBMPythonWebscrapingStocksProjectForDataScience/921a9e20ee2fd71012f0b76de49ab60873f88ea3/TeslaRevenueChart.jpg"</center>  
+</p>  
+
+<p align="center">  
+<img src="https://raw.githubusercontent.com/evilusean/IBMPythonWebscrapingStocksProjectForDataScience/921a9e20ee2fd71012f0b76de49ab60873f88ea3/GamestopPriceChart.jpg"</center>  
+</p>  
+
+<p align="center">  
+<img src="https://raw.githubusercontent.com/evilusean/IBMPythonWebscrapingStocksProjectForDataScience/921a9e20ee2fd71012f0b76de49ab60873f88ea3/GameStopRevenueChart.jpg"</center>  
 </p>  
